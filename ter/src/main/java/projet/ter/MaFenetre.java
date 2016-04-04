@@ -1,8 +1,5 @@
 package projet.ter;
-import java.awt.Color;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class MaFenetre  extends JFrame{
 	
@@ -24,8 +21,11 @@ public class MaFenetre  extends JFrame{
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   
 	    //On pr�vient notre JFrame que notre JPanel sera son content pane
+	    
+	    
+	    
 
-	    this.setContentPane(new GrilleCarre()); 
+	    this.setContentPane(new GrilleHex()); 
 	    //Et enfin, la rendre visible      
 	    
 	    this.setVisible(true);

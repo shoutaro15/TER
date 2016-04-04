@@ -3,13 +3,18 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Shape;
 
 import javax.swing.JPanel;
 
-public class GrilleHex  extends JPanel{
+public class GrilleHex extends Grille{
 	final static int cote=26;
-	final static int ligne = 30;
-	final static int colonne = 30;
+	
+	
+	public GrilleHex(){
+		plateaux = new Shape[ligne][colonne];
+	}
+	
 	
 	public void paintComponent(Graphics g){
 				Polygon test = GrilleHex.getPolygon(0, 0, 26);
