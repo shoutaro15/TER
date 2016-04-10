@@ -1,6 +1,8 @@
 package projet.ter;
 
+import java.io.File;
 import javax.swing.* ;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -236,9 +238,22 @@ public class Fenetre extends JFrame {
     	System.out.println ("recule") ;
     }  
 
+    /**
+     * Ouvre une boîte de dialogue lorsque l'on clique sur le bouton pour charger un fichier.
+     * 
+     * @param evt clic sur le bouton
+     */
     private void ChargerFicherActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
     	System.out.println ("charge") ;
+    	
+		JFileChooser ouvrirFichier = new JFileChooser();
+        ouvrirFichier.setFileFilter(new FileNameExtensionFilter("Fichier texte (.txt)", "txt"));
+
+    	if(ouvrirFichier.showDialog(null, "Importer un scénario") == JFileChooser.APPROVE_OPTION) {
+    		File fichier = ouvrirFichier.getSelectedFile();
+    		System.out.println(fichier);
+    	}
     }  
 
                    
