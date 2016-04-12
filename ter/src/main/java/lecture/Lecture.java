@@ -125,9 +125,12 @@ public class Lecture {
 								nbPV++;
 
 								if(nbPV == 1){
-									t = new Transition();
+									if (t.date != Float.parseFloat(tempString)){
+										t = new Transition();
+										t.date = Float.parseFloat(tempString);
+									}
+
 									//System.out.println("test date");
-									t.date = Float.parseFloat(tempString);
 									tempString = "";
 								}
 								else if(nbPV == 2){
@@ -157,7 +160,8 @@ public class Lecture {
 									temp = new Cellule(x, y, etat);
 									etat = new ArrayList<Integer>();
 									t.listeCellule.add(temp);
-									this.p.trans.add(t);
+									
+									this.p.trans.add(t);	///////////////////////////////POSE PROBLEME
 									x = -1;
 									y = -1;
 									tempString = "";
@@ -171,10 +175,6 @@ public class Lecture {
 							}
 						}
 					}
-
-
-
-
 					if(testDelimiteur(ligne)){
 						delimiteur ++;
 					}
