@@ -33,6 +33,8 @@ public class Lecture {
 		int x = -1;
 		int y = -1;
 		ArrayList<Integer> etat = new ArrayList<Integer>();
+		
+		boolean ok = false;
 
 		try{
 			InputStream ips=new FileInputStream(fichier); 
@@ -119,17 +121,22 @@ public class Lecture {
 					else if(numLigne > (5+this.p.tailleY) + 1){
 						//System.out.println("test condition");
 						for(int i = 0; i<ligne.length(); i++){
-							//System.out.println("test boucle");
+							
+							//System.out.println("test boucle" + ligne.charAt(i));
 							if(ligne.charAt(i) == ';'){
-								//System.out.println("test ;");
+								//System.out.println("test ;" + ligne.charAt(i));
 								nbPV++;
 
 								if(nbPV == 1){
+									
 									if (t.date != Float.parseFloat(tempString)){
+										if(ok ==true) {this.p.trans.add(t);
+										//System.out.println("on est la");
+										}
 										t = new Transition();
 										t.date = Float.parseFloat(tempString);
+										
 									}
-
 									//System.out.println("test date");
 									tempString = "";
 								}
@@ -144,33 +151,49 @@ public class Lecture {
 									tempString = "";
 								}
 								else if(nbPV == 4){
-									//System.out.println("test hardcore");
+									//System.out.println("test hardcore" + ligne.charAt(i));
 									for(int j = 0; j<tempString.length(); j++){
 										//System.out.println("test hardcore boucle");
 										if(tempString.charAt(j) == '-'){
-											//System.out.println("test hardcore -");
+											//System.out.println("test hardcore -" + tempEtat);
 											etat.add(Integer.parseInt(tempEtat));
 											tempEtat = "";
 										}
 										else{
-											//System.out.println("test hardcore ecrit");
 											tempEtat += tempString.charAt(j);
+											//System.out.println("test hardcore ecrit" + tempEtat);
+											
+										}
+										
+										if(j == tempString.length()-1){
+											//System.out.println("test hardcore fin" + tempEtat);
+											etat.add(Integer.parseInt(tempEtat));
+											
 										}
 									}
+							
 									temp = new Cellule(x, y, etat);
-									etat = new ArrayList<Integer>();
+									//System.out.println("temp" +temp.etat.get(0));
 									t.listeCellule.add(temp);
+									//System.out.println("listec" + t.listeCellule.get(0).etat.get(0));
 									
-									this.p.trans.add(t);	///////////////////////////////POSE PROBLEME
+									if(i == ligne.length()-1){
+										this.p.trans.add(t);
+										//System.out.println("on est la");
+									}
+									
 									x = -1;
 									y = -1;
-									tempString = "";
+									etat = new ArrayList<Integer>();
 									nbPV = 0;
+									ok = true;
+									tempString = "";
+									tempEtat = "";
 								}
 
 							}
 							else{
-								//System.out.println("test ecrit");
+								//System.out.println("test ecrit" + ligne.charAt(i));
 								tempString += ligne.charAt(i);
 							}
 						}
