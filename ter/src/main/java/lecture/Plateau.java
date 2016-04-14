@@ -33,5 +33,4 @@ public class Plateau {
 		this.trans = p.trans;
 		this.typeTemps = p.typeTemps;
 	}
-
 }
