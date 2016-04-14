@@ -1,4 +1,4 @@
-package lecture;
+package projet.ter.lecture;
 
 public class Main {
 	public static void main(String[] args){

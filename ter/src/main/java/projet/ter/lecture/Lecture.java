@@ -1,4 +1,4 @@
-package lecture;
+package projet.ter.lecture;
 
 import java.io.*;
 import java.util.ArrayList;
