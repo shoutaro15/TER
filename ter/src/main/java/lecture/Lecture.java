@@ -35,6 +35,7 @@ public class Lecture {
 		ArrayList<Integer> etat = new ArrayList<Integer>();
 
 		boolean ok = false;
+		//boolean tiret = false;
 
 		try{
 			InputStream ips=new FileInputStream(fichier); 
@@ -132,7 +133,8 @@ public class Lecture {
 									if(nbPV == 1){
 
 										if (t.date != Float.parseFloat(tempString)){
-											if(ok ==true) {this.p.trans.add(t);
+											if(ok ==true) {
+												this.p.trans.add(t);
 											//System.out.println("on est la");
 											}
 											t = new Transition();
@@ -153,6 +155,7 @@ public class Lecture {
 										tempString = "";
 									}
 									else if(nbPV == 4){
+										etat = new ArrayList<Integer>();
 										System.out.println("test hardcore" + ligne.charAt(i));
 										for(int j = 0; j<tempString.length(); j++){
 											System.out.println("test hardcore boucle");
@@ -163,16 +166,12 @@ public class Lecture {
 											}
 											else{
 												tempEtat += tempString.charAt(j);
+												//tiret = true;
 												System.out.println("test hardcore ecrit" + tempEtat);
 
 											}
-
-											if(j == tempString.length()-1){
-												System.out.println("test hardcore fin" + tempEtat);
-												etat.add(Integer.parseInt(tempEtat));
-
-											}
 										}
+										etat.add(Integer.parseInt(tempEtat));
 
 										temp = new Cellule(x, y, etat);
 										//System.out.println("temp" +temp.etat.get(0));
@@ -181,7 +180,7 @@ public class Lecture {
 
 										x = -1;
 										y = -1;
-										etat = new ArrayList<Integer>();
+										
 										nbPV = 0;
 										ok = true;
 										tempString = "";
