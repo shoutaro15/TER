@@ -33,7 +33,7 @@ public class Lecture {
 		int x = -1;
 		int y = -1;
 		ArrayList<Integer> etat = new ArrayList<Integer>();
-		
+
 		boolean ok = false;
 
 		try{
@@ -83,15 +83,15 @@ public class Lecture {
 						this.p.plateau = new Cellule[this.p.tailleY][this.p.tailleX];
 						delimiteur ++;
 					}
-					
-					
+
+
 				}else if(delimiteur == 1){
 
 					//System.out.println(numLigne);
 					//System.out.println((5+ this.p.tailleY));
 
 					if(numLigne <= (5+ this.p.tailleY)){
-					
+
 						//System.out.println(colonne);
 						for(int i = 0; i<ligne.length(); i++){
 							if(ligne.charAt(i) == ';'){
@@ -118,88 +118,89 @@ public class Lecture {
 
 						line = 0;
 					}
-					else if(numLigne > (5+this.p.tailleY) + 1){
+					else{
 						//System.out.println("test condition");
-						for(int i = 0; i<ligne.length(); i++){
-							
-							//System.out.println("test boucle" + ligne.charAt(i));
-							if(ligne.charAt(i) == ';'){
-								//System.out.println("test ;" + ligne.charAt(i));
-								nbPV++;
 
-								if(nbPV == 1){
-									
-									if (t.date != Float.parseFloat(tempString)){
-										if(ok ==true) {this.p.trans.add(t);
-										//System.out.println("on est la");
-										}
-										t = new Transition();
-										t.date = Float.parseFloat(tempString);
-										
-									}
-									//System.out.println("test date");
-									tempString = "";
-								}
-								else if(nbPV == 2){
-									//System.out.println("test x");
-									x = Integer.parseInt(tempString);
-									tempString = "";
-								}
-								else if(nbPV == 3){
-									//System.out.println("test y");
-									y = Integer.parseInt(tempString);
-									tempString = "";
-								}
-								else if(nbPV == 4){
-									//System.out.println("test hardcore" + ligne.charAt(i));
-									for(int j = 0; j<tempString.length(); j++){
-										//System.out.println("test hardcore boucle");
-										if(tempString.charAt(j) == '-'){
-											//System.out.println("test hardcore -" + tempEtat);
-											etat.add(Integer.parseInt(tempEtat));
-											tempEtat = "";
-										}
-										else{
-											tempEtat += tempString.charAt(j);
-											//System.out.println("test hardcore ecrit" + tempEtat);
-											
-										}
-										
-										if(j == tempString.length()-1){
-											//System.out.println("test hardcore fin" + tempEtat);
-											etat.add(Integer.parseInt(tempEtat));
-											
-										}
-									}
-							
-									temp = new Cellule(x, y, etat);
-									//System.out.println("temp" +temp.etat.get(0));
-									t.listeCellule.add(temp);
-									//System.out.println("listec" + t.listeCellule.get(0).etat.get(0));
-									
-									if(i == ligne.length()-1){
-										this.p.trans.add(t);
-										//System.out.println("on est la");
-									}
-									
-									x = -1;
-									y = -1;
-									etat = new ArrayList<Integer>();
-									nbPV = 0;
-									ok = true;
-									tempString = "";
-									tempEtat = "";
-								}
+						if(!testDelimiteur(ligne)){
+							for(int i = 0; i<ligne.length(); i++){
 
-							}
-							else{
-								//System.out.println("test ecrit" + ligne.charAt(i));
-								tempString += ligne.charAt(i);
+								//System.out.println("test boucle" + ligne.charAt(i));
+								if(ligne.charAt(i) == ';'){
+									//System.out.println("test ;" + ligne.charAt(i));
+									nbPV++;
+
+									if(nbPV == 1){
+
+										if (t.date != Float.parseFloat(tempString)){
+											if(ok ==true) {this.p.trans.add(t);
+											//System.out.println("on est la");
+											}
+											t = new Transition();
+											t.date = Float.parseFloat(tempString);
+
+										}
+										//System.out.println("test date");
+										tempString = "";
+									}
+									else if(nbPV == 2){
+										//System.out.println("test x");
+										x = Integer.parseInt(tempString);
+										tempString = "";
+									}
+									else if(nbPV == 3){
+										//System.out.println("test y");
+										y = Integer.parseInt(tempString);
+										tempString = "";
+									}
+									else if(nbPV == 4){
+										System.out.println("test hardcore" + ligne.charAt(i));
+										for(int j = 0; j<tempString.length(); j++){
+											System.out.println("test hardcore boucle");
+											if(tempString.charAt(j) == '-'){
+												System.out.println("test hardcore -" + tempEtat);
+												etat.add(Integer.parseInt(tempEtat));
+												tempEtat = "";
+											}
+											else{
+												tempEtat += tempString.charAt(j);
+												System.out.println("test hardcore ecrit" + tempEtat);
+
+											}
+
+											if(j == tempString.length()-1){
+												System.out.println("test hardcore fin" + tempEtat);
+												etat.add(Integer.parseInt(tempEtat));
+
+											}
+										}
+
+										temp = new Cellule(x, y, etat);
+										//System.out.println("temp" +temp.etat.get(0));
+										t.listeCellule.add(temp);
+										//System.out.println("listec" + t.listeCellule.get(0).etat.get(0));
+
+										x = -1;
+										y = -1;
+										etat = new ArrayList<Integer>();
+										nbPV = 0;
+										ok = true;
+										tempString = "";
+										tempEtat = "";
+									}
+
+								}
+								else{
+
+									//System.out.println("test ecrit" + ligne.charAt(i));
+									tempString += ligne.charAt(i);
+								}
 							}
 						}
-					}
-					if(testDelimiteur(ligne)){
-						delimiteur ++;
+
+						else{
+							this.p.trans.add(t);
+							delimiteur ++;
+						}
 					}
 				}else if(delimiteur == 2){
 					this.resultat = ligne;
@@ -215,6 +216,4 @@ public class Lecture {
 		return p;
 	}
 
-
 }
-
