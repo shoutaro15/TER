@@ -7,6 +7,7 @@ import javax.swing.* ;
 import java.util.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import projet.ter.lecture.Cellule;
 import projet.ter.lecture.Lecture;
 import projet.ter.lecture.Plateau;
 import projet.ter.lecture.Transition;
@@ -25,9 +26,9 @@ public class Fenetre extends JFrame {
     private JPanel ConteneurBoutons;
     private JPanel Legende;
     private JPanel Scène;
-	String fichier = "";
-	Lecture test = new Lecture();
-	Plateau test2 = new Plateau();
+	public static String fichier = "";
+	public static Lecture test = new Lecture();
+	public static Plateau test2 = new Plateau();
     private JLabel legend;
 	JFrame frame = new JFrame();
 
@@ -201,6 +202,7 @@ public class Fenetre extends JFrame {
 
     Timer timer; // Classe Timer
     TempsPasse tpsPasse; // Classe TempsPasse
+    TempsRecule tpsRecule; // Classe TempsRecule
     int verifTimerLance = 0; // Timer lancé = 1, timer arrêté = 0
     int valeurTpsPasse = 0; // Valeur du temps passé
     boolean verifScenario = false;
@@ -250,7 +252,8 @@ public class Fenetre extends JFrame {
         if(verifTimerLance == 0) {
     		verifTimerLance = 1;
     		new Controle().afficherDate();
-    		
+    		TempsPasse.temps = timer;
+
     		timer = new Timer();
     		tpsPasse = new TempsPasse(valeurTpsPasse);
     		
@@ -261,24 +264,35 @@ public class Fenetre extends JFrame {
     
     private void reculeActionPerformed(java.awt.event.ActionEvent evt) {
     	
-    	if(verifScenario && !TempsPasse.historique.isEmpty() && verifTimerLance ==0){
-    		
-    		 Transition temp = TempsPasse.historique.pop();
-    		 for(int i =0 ; i< temp.listeCellule.size();i++){
-    			 int x = temp.listeCellule.get(i).x;
-    			 int y = temp.listeCellule.get(i).y;
-    			 TempsPasse.plateau.plateau[x][y] = temp.listeCellule.get(i);
-    			 valeurTpsPasse-=temp.date;
-    		 }
-    		 this.Scène.repaint();
-    		
-    	}
+    	if(verifScenario && !TempsPasse.historique.isEmpty() && (verifTimerLance == 0 || TempsPasse.terminer)){
+        		
+        		new Controle().afficherDate();
+        		
+        		timer = new Timer();
+        		TempsRecule.temps = timer;
+        		
+        		/*
+        		 * Classe TempsPasse initialisé à "valeurTpsPasse"
+        		 * Démarre à partir de "0" au début
+        		 * Démarre ensuite à partir de n'importe quelle valeur de "valeurTpsPasse"
+        		 * 
+        		 */
+        		
+        		tpsRecule = new TempsRecule(valeurTpsPasse);
+        		
+        		
+        		
+        		// Timer qui débute dans 1 seconde et qui compte toutes les secondes
+        		timer.schedule(tpsRecule, 1000, 1000);
+        	}
+        }                                    
+
+    				
     	
     	
     	
-        // TODO add your handling code here:
-    	System.out.println ("recule") ;
-    }  
+    	
+   
 
     /**
      * Ouvre une boîte de dialogue lorsque l'on clique sur le bouton pour charger un fichier.
@@ -322,6 +336,10 @@ public class Fenetre extends JFrame {
     		TempsPasse.fenetre = this.Scène;
     		TempsPasse.grille = neutre;
     		TempsPasse.plateau = test2;
+    		
+    		TempsRecule.fenetre = this.Scène;
+    		TempsRecule.grille = neutre;
+    		TempsRecule.plateau = test2;
     		
     		SwingUtilities.updateComponentTreeUI(this);
 

@@ -58,10 +58,14 @@ public class TempsPasse extends TimerTask {
 					for(int j =0 ;j<plateau.trans.get(i).listeCellule.size();j++){
 							 int x =plateau.trans.get(i).listeCellule.get(j).x;
 							 int y =plateau.trans.get(i).listeCellule.get(j).y;
-							 Cellule tempC = plateau.plateau[x][y];
+							// for(int k=0 ;k<plateau.trans.get(i).listeCellule.get(j).etat.size();k++)
+							 //System.out.println("X= "+x+"  Y = "+y+" etat = "+ plateau.trans.get(i).listeCellule.get(j).etat.get(k) +" B");
+
+							 Cellule tempC = plateau.plateau[y][x];
 							 tempT.listeCellule.add(tempC);
 					}
 					historique.push(tempT);
+					
 					grille.chargeTransition(plateau.trans.get(i));
 					fenetre.repaint();
 					 

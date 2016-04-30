@@ -36,7 +36,8 @@ public class GrilleHex extends Grille{
 				Graphics2D g2d = (Graphics2D) g;
 
 			
-				
+	    		 
+
 					
 				for(int l=0;l<ligne;l=l+2){
 					for(int c=0;c<colonne;c++){
@@ -69,7 +70,6 @@ public class GrilleHex extends Grille{
 							
 							
 								g.drawImage(image.get(i), rect.x, rect.y,rect.width,rect.height, null);
-							
 							
 							
 							}
