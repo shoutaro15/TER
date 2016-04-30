@@ -1,5 +1,7 @@
 package projet.ter;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.File;
 import javax.swing.* ;
 import java.util.Timer;
@@ -7,6 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import projet.ter.lecture.Lecture;
 import projet.ter.lecture.Plateau;
+import projet.ter.lecture.Transition;
 
 /**
  *
@@ -22,9 +25,12 @@ public class Fenetre extends JFrame {
     private JPanel ConteneurBoutons;
     private JPanel Legende;
     private JPanel Scène;
-    
+	String fichier = "";
+	Lecture test = new Lecture();
+	Plateau test2 = new Plateau();
     private JLabel legend;
-    
+	JFrame frame = new JFrame();
+
     private JButton pause;
     private JButton avance;
     private JButton play;
@@ -34,29 +40,14 @@ public class Fenetre extends JFrame {
     // End of variables declaration 
     
     public Fenetre() {
-      //  initComponents();
-		String fichier = "src/main/java/projet/ter/lecture/test.txt";
-		Lecture lectureFichier= new Lecture();
-		Plateau plateau = new Plateau();
-		plateau = lectureFichier.lectureTxt(fichier);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+    	//fonction qui initialise la fenetre
+    	initComponents();
         this.setTitle("Projet TER");
-        this.setSize(1000, 1000);
-      
-        //this.setLocationRelativeTo(null);
-        GrilleHex grill = new GrilleHex(plateau);
-        this.setContentPane(grill);
-        grill.chargeTransition(grill.donne.trans.get(1));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setSize(1000, 600);
         this.setVisible(true);
-        // this.Scène.add(new GrilleHex()) ;
-        // this.Scène.setContentPane(new GrilleHex()); 
-         //this.Scène.print();
-        /* this.Scène.add(new GrilleHex()) ;
-         this.Scène.validate();
-         this.Scène.repaint();
-         this.Scène.setVisible(true) ;
-         this.repaint() ;*/
+   
     }
 
     /**
@@ -67,54 +58,24 @@ public class Fenetre extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents() {
-    	Scène = new javax.swing.JPanel(); 
-        Legende = new javax.swing.JPanel();
+    	Legende = new javax.swing.JPanel();
         legend = new javax.swing.JLabel();
-        AffichageText = new javax.swing.JPanel();
         ConteneurBoutons = new javax.swing.JPanel();
         recule = new javax.swing.JButton();
         play = new javax.swing.JButton();
         pause = new javax.swing.JButton();
         ChargerFicher = new javax.swing.JButton();
         avance = new javax.swing.JButton();
+        Scène = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Fenetre");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
-        Legende.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Legende.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         legend.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         legend.setText("Légende");
-
-        javax.swing.GroupLayout LegendeLayout = new javax.swing.GroupLayout(Legende);
-        Legende.setLayout(LegendeLayout);
-        LegendeLayout.setHorizontalGroup(
-            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LegendeLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(legend)
-                .addGap(35, 35, 35))
-        );
-        LegendeLayout.setVerticalGroup(
-            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LegendeLayout.createSequentialGroup()
-                .addComponent(legend)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        AffichageText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout AffichageTextLayout = new javax.swing.GroupLayout(AffichageText);
-        AffichageText.setLayout(AffichageTextLayout);
-        AffichageTextLayout.setHorizontalGroup(
-            AffichageTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
-        );
-        AffichageTextLayout.setVerticalGroup(
-            AffichageTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         ConteneurBoutons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ConteneurBoutons.setToolTipText("");
@@ -123,7 +84,7 @@ public class Fenetre extends JFrame {
         recule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reculeActionPerformed(evt);
-            }
+            }	
         });
 
         play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/play.png"))); // NOI18N
@@ -163,41 +124,60 @@ public class Fenetre extends JFrame {
         ConteneurBoutonsLayout.setHorizontalGroup(
             ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConteneurBoutonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 37, Short.MAX_VALUE)
                 .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
                         .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(avance, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(26, 26, 26))
         );
         ConteneurBoutonsLayout.setVerticalGroup(
             ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(avance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pause, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
+
+        javax.swing.GroupLayout LegendeLayout = new javax.swing.GroupLayout(Legende);
+        Legende.setLayout(LegendeLayout);
+        LegendeLayout.setHorizontalGroup(
+            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ConteneurBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(LegendeLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(legend)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LegendeLayout.setVerticalGroup(
+            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LegendeLayout.createSequentialGroup()
+                .addComponent(legend)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addComponent(ConteneurBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout ScèneLayout = new javax.swing.GroupLayout(Scène);
         Scène.setLayout(ScèneLayout);
         ScèneLayout.setHorizontalGroup(
             ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
         ScèneLayout.setVerticalGroup(
             ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 321, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,48 +185,45 @@ public class Fenetre extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(AffichageText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ConteneurBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Scène, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Scène, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Legende, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Legende, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Scène, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ConteneurBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AffichageText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(Scène, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>                        
 
+
     Timer timer; // Classe Timer
     TempsPasse tpsPasse; // Classe TempsPasse
     int verifTimerLance = 0; // Timer lancé = 1, timer arrêté = 0
     int valeurTpsPasse = 0; // Valeur du temps passé
+    boolean verifScenario = false;
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {
         // On vérifie si le timer n'a pas encore été lancé
-    	if(verifTimerLance == 0) {
+    	if(verifTimerLance == 0 && verifScenario && !TempsPasse.terminer) {
     		verifTimerLance = 1; // Timer démarré
     		new Controle().afficherDate();
     		
     		timer = new Timer();
+    		TempsPasse.temps = timer;
     		
     		/*
     		 * Classe TempsPasse initialisé à "valeurTpsPasse"
     		 * Démarre à partir de "0" au début
     		 * Démarre ensuite à partir de n'importe quelle valeur de "valeurTpsPasse"
+    		 * 
     		 */
+    		
     		tpsPasse = new TempsPasse(valeurTpsPasse);
+    		
+    		
     		
     		// Timer qui débute dans 1 seconde et qui compte toutes les secondes
     		timer.schedule(tpsPasse, 1000, 1000);
@@ -282,7 +259,23 @@ public class Fenetre extends JFrame {
     	}
     }
     
-    private void reculeActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    private void reculeActionPerformed(java.awt.event.ActionEvent evt) {
+    	
+    	if(verifScenario && !TempsPasse.historique.isEmpty() && verifTimerLance ==0){
+    		
+    		 Transition temp = TempsPasse.historique.pop();
+    		 for(int i =0 ; i< temp.listeCellule.size();i++){
+    			 int x = temp.listeCellule.get(i).x;
+    			 int y = temp.listeCellule.get(i).y;
+    			 TempsPasse.plateau.plateau[x][y] = temp.listeCellule.get(i);
+    			 valeurTpsPasse-=temp.date;
+    		 }
+    		 this.Scène.repaint();
+    		
+    	}
+    	
+    	
+    	
         // TODO add your handling code here:
     	System.out.println ("recule") ;
     }  
@@ -300,7 +293,38 @@ public class Fenetre extends JFrame {
         ouvrirFichier.setFileFilter(new FileNameExtensionFilter("Fichier texte (.txt)", "txt"));
 
     	if(ouvrirFichier.showDialog(null, "Importer un scénario") == JFileChooser.APPROVE_OPTION) {
-    		File fichier = ouvrirFichier.getSelectedFile();
+    		File fichiertemp = ouvrirFichier.getSelectedFile();
+    		fichier = fichiertemp.toString();
+    		test2 = test.lectureTxt(fichier);
+	
+            
+            this.Scène.setLayout(new BorderLayout());
+
+    		Grille neutre = null;
+    		
+    		if(test2.senario.equals("feu")){
+    			neutre = new GrilleHex(test2);
+    			verifScenario = true;
+
+    			
+    		}
+    		if(test2.senario.equals("avion")){
+    			neutre = new GrilleCarre(test2);
+    			verifScenario = true;
+
+    			
+    		}
+    		
+    		
+            this.Scène.add(neutre,BorderLayout.CENTER);
+            this.Scène.validate();
+            
+    		TempsPasse.fenetre = this.Scène;
+    		TempsPasse.grille = neutre;
+    		TempsPasse.plateau = test2;
+    		
+    		SwingUtilities.updateComponentTreeUI(this);
+
     		System.out.println(fichier);
     	}
     }  

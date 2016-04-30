@@ -1,6 +1,9 @@
 package projet.ter;
 import javax.swing.JFrame;
 
+import projet.ter.lecture.Lecture;
+import projet.ter.lecture.Plateau;
+
 public class MaFenetre  extends JFrame{
 	
 	MaFenetre(){
@@ -22,10 +25,13 @@ public class MaFenetre  extends JFrame{
   
 	    //On pr�vient notre JFrame que notre JPanel sera son content pane
 	    
-	    
+	    String fichier = "src/main/java/projet/ter/lecture/test.txt";
+		Lecture test = new Lecture();
+		Plateau test2 = new Plateau();
+		test2 = test.lectureTxt(fichier);
 	    
 
-	  //  this.setContentPane(new GrilleHex()); 
+	   this.setContentPane(new GrilleHex(test2)); 
 	    //Et enfin, la rendre visible      
 	    
 	    this.setVisible(true);

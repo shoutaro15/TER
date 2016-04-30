@@ -19,7 +19,7 @@ import projet.ter.lecture.Plateau;
 
 public class GrilleHex extends Grille{
 	//final static int cote=16;
-	final static int cote=90;
+	final static int cote=40;
 
 	
 	public GrilleHex(Plateau plateau){
@@ -91,8 +91,36 @@ public class GrilleHex extends Grille{
 						AlphaComposite alpha = (AlphaComposite) g2d.getComposite();
 						
 						Polygon poly=getPolygon(c*r.width+r.width/2,(int)(l*cote*1.5+0.5),cote);
+						
+						Rectangle rect = poly.getBounds();
+						
+						g.setClip(poly);
+						for(int i = 0 ; i<etat.size();i++){
+							float opa = (10-(i*2));	
+							fichier.add(new File(chemin+donne.senario+"/icone/"+etat.get(i)+".png"));
+							 g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opa* 0.1f));
+
+							
+								try {
+									image.add(ImageIO.read(fichier.get(i)));
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							
+							
+								g.drawImage(image.get(i), rect.x, rect.y,rect.width,rect.height, null);
+							
+							
+							
+							}
+						
+						g.setClip(null);
 						g.drawPolygon(poly);
+					
+							
+							 g2d.setComposite(alpha);
 					}
+					
 				}
 	}
 
