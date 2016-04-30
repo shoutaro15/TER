@@ -2,6 +2,7 @@ package projet.ter;
 
 import java.io.File;
 import javax.swing.* ;
+import java.util.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import projet.ter.lecture.Lecture;
@@ -227,23 +228,60 @@ public class Fenetre extends JFrame {
         pack();
     }// </editor-fold>                        
 
-                                       
+    Timer timer; // Classe Timer
+    TempsPasse tpsPasse; // Classe TempsPasse
+    int verifTimerLance = 0; // Timer lancé = 1, timer arrêté = 0
+    int valeurTpsPasse = 0; // Valeur du temps passé
 
-    private void playActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        // TODO add your handling code here:
-    	System.out.println ("play") ;
+    private void playActionPerformed(java.awt.event.ActionEvent evt) {
+        // On vérifie si le timer n'a pas encore été lancé
+    	if(verifTimerLance == 0) {
+    		verifTimerLance = 1; // Timer démarré
+    		new Controle().afficherDate();
+    		
+    		timer = new Timer();
+    		
+    		/*
+    		 * Classe TempsPasse initialisé à "valeurTpsPasse"
+    		 * Démarre à partir de "0" au début
+    		 * Démarre ensuite à partir de n'importe quelle valeur de "valeurTpsPasse"
+    		 */
+    		tpsPasse = new TempsPasse(valeurTpsPasse);
+    		
+    		// Timer qui débute dans 1 seconde et qui compte toutes les secondes
+    		timer.schedule(tpsPasse, 1000, 1000);
+    	}
     }                                    
 
-    private void pauseActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        // TODO add your handling code here:
-    	System.out.println ("pause") ;
-    }                                     
-                                           
-
+    private void pauseActionPerformed(java.awt.event.ActionEvent evt) {
+    	// On vérifie si le timer a déjà été lancé
+    	if(verifTimerLance == 1) {
+    		verifTimerLance = 0; // Timer arrêté
+    		
+    		/*
+    		 * On récupère la valeur du temps passé dans la variable "valeurTpsPasse" pour pouvoir reprendre
+    		 * après la pause
+    		 */
+        	valeurTpsPasse = tpsPasse.getTpsPasse();
+        	
+        	// On arrête le compteur
+        	timer.cancel();
+    	}
+    }
+    
     private void avanceActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-    	System.out.println ("avance") ;
-    }   
+        if(verifTimerLance == 0) {
+    		verifTimerLance = 1;
+    		new Controle().afficherDate();
+    		
+    		timer = new Timer();
+    		tpsPasse = new TempsPasse(valeurTpsPasse);
+    		
+    		// Timer qui débute dans 500 millisecondes et qui compte toutes les 500 millisecondes
+    		timer.schedule(tpsPasse, 500, 500);
+    	}
+    }
+    
     private void reculeActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
     	System.out.println ("recule") ;
