@@ -4,6 +4,9 @@ import java.io.File;
 import javax.swing.* ;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import projet.ter.lecture.Lecture;
+import projet.ter.lecture.Plateau;
+
 /**
  *
  * @author MIGAOU
@@ -30,13 +33,21 @@ public class Fenetre extends JFrame {
     // End of variables declaration 
     
     public Fenetre() {
-        initComponents();
+      //  initComponents();
+		String fichier = "src/main/java/projet/ter/lecture/test.txt";
+		Lecture lectureFichier= new Lecture();
+		Plateau plateau = new Plateau();
+		plateau = lectureFichier.lectureTxt(fichier);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        this.setVisible(true);
         this.setTitle("Projet TER");
-       
+        this.setSize(1000, 1000);
+      
         //this.setLocationRelativeTo(null);
-        //this.setContentPane(new GrilleHex()); 
+        GrilleHex grill = new GrilleHex(plateau);
+        this.setContentPane(grill);
+        grill.chargeTransition(grill.donne.trans.get(1));
+        this.setVisible(true);
         // this.Scène.add(new GrilleHex()) ;
         // this.Scène.setContentPane(new GrilleHex()); 
          //this.Scène.print();

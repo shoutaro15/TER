@@ -25,7 +25,7 @@ public class MaFenetre  extends JFrame{
 	    
 	    
 
-	    this.setContentPane(new GrilleHex()); 
+	  //  this.setContentPane(new GrilleHex()); 
 	    //Et enfin, la rendre visible      
 	    
 	    this.setVisible(true);

@@ -2,9 +2,10 @@ package projet.ter.lecture;
 
 public class Main {
 	public static void main(String[] args){
-		String fichier = "src/main/java/lecture/test.txt";
+		String fichier = "src/main/java/projet/ter/lecture/test.txt";
 		Lecture test = new Lecture();
-		test.lectureTxt(fichier);
+		Plateau test2 = new Plateau();
+		test2 = test.lectureTxt(fichier);
 		
 		System.out.println(test.p.senario + "/" + test.p.typeTemps + "/" + test.p.forme + "/"+ test.p.tailleX + "/"+ test.p.tailleY);
 		System.out.println(test.p.plateau[0][0].etat.get(0) + "/" + test.p.plateau[1][1].etat.get(0));
