@@ -1,6 +1,5 @@
 package projet.ter;
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import projet.ter.lecture.Plateau;
-import projet.ter.lecture.Transition;
 
 public class GrilleCarre extends Grille {
 	final static int coter = 80;
