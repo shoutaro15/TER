@@ -16,13 +16,12 @@ import projet.ter.lecture.Transition;
  * Compte le temps passé durant la simulation.
  */
 public class TempsPasse extends TimerTask {
-	int tpsPasse;
 	public static JPanel fenetre;
 	public static Grille grille;
 	public static Plateau plateau;
 	public static Stack <Transition> historique = new Stack<Transition>();
 	public static boolean terminer = false; // simulation terminer ou non
-	public static Timer  temps = null; 
+	public Timer  temps = null; 
 	
 	/**
 	 * Constructeur de la classe TempsPasse.
@@ -30,13 +29,13 @@ public class TempsPasse extends TimerTask {
 	 * 
 	 * @param tpsPasse la valeur de départ du compteur
 	 */
-	public TempsPasse(int tpsPasse) {
-		this.tpsPasse = tpsPasse;
+	public TempsPasse( Timer temps) {
+		this.temps = temps;
 	}
 	
 
 	
-	
+	/*
 	public int getTpsPasse() {
 		return this.tpsPasse;
 	}
@@ -44,7 +43,7 @@ public class TempsPasse extends TimerTask {
 	public void setTpsPasse(int tpsPasse) {
 		this.tpsPasse = tpsPasse;
 	}
-	
+	*/
 	/**
 	 * Lance le compteur.
 	 */
@@ -52,20 +51,18 @@ public class TempsPasse extends TimerTask {
 	
 		
 		for(int i=0;i<plateau.trans.size();i++){
-				if(plateau.trans.get(i).date == tpsPasse){
+				if(plateau.trans.get(i).date == Fenetre.valeurTpsPasse){
 					Transition tempT = new Transition();
 					tempT.date = plateau.trans.get(i).date;
 					for(int j =0 ;j<plateau.trans.get(i).listeCellule.size();j++){
 							 int x =plateau.trans.get(i).listeCellule.get(j).x;
 							 int y =plateau.trans.get(i).listeCellule.get(j).y;
-							// for(int k=0 ;k<plateau.trans.get(i).listeCellule.get(j).etat.size();k++)
-							 //System.out.println("X= "+x+"  Y = "+y+" etat = "+ plateau.trans.get(i).listeCellule.get(j).etat.get(k) +" B");
-
 							 Cellule tempC = plateau.plateau[y][x];
 							 tempT.listeCellule.add(tempC);
+
+							 
 					}
 					historique.push(tempT);
-					
 					grille.chargeTransition(plateau.trans.get(i));
 					fenetre.repaint();
 					 
@@ -76,8 +73,11 @@ public class TempsPasse extends TimerTask {
 		if(historique.size() ==plateau.trans.size()){
 			terminer=true;
 			temps.cancel();
-		}
-		tpsPasse++;
-		System.out.println("T = "+tpsPasse+" Historique :"+historique.size());
+			}
+			
+		
+		
+System.out.println(Fenetre.valeurTpsPasse);
+		Fenetre.valeurTpsPasse++;
 	}
 }

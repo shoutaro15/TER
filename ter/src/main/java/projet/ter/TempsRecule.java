@@ -1,6 +1,5 @@
 package projet.ter;
 
-import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,18 +9,19 @@ import projet.ter.lecture.Plateau;
 import projet.ter.lecture.Transition;
 
 public class TempsRecule extends TimerTask {
-	int tpsPasse;
+
 	public static JPanel fenetre;
 	public static Grille grille;
 	public static Plateau plateau;
-	public static Timer  temps = null; 
+	public Timer  temps = null; 
 
 	
 	
 
 
-	public TempsRecule(int valeurTpsPasse) {
-		this.tpsPasse = valeurTpsPasse;
+	public TempsRecule(Timer temps) {
+
+		this.temps = temps;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -35,17 +35,26 @@ public class TempsRecule extends TimerTask {
 		if(!TempsPasse.historique.isEmpty()){
 		 Transition temp = TempsPasse.historique.pop();
 			
+
+		 
+		 
+		 
 			for(int j =0 ;j<temp.listeCellule.size();j++){
 				
 					 int x =temp.listeCellule.get(j).y;
 					 int y =temp.listeCellule.get(j).x;
-					 plateau.plateau[y][x] = temp.listeCellule.get(0);
+					 plateau.plateau[y][x] = temp.listeCellule.get(j);
 		    		 fenetre.repaint(); 
 			}
-			tpsPasse-=temp.date;
+			if(!TempsPasse.historique.isEmpty()){
+				Fenetre.valeurTpsPasse=(int) (temp.date-TempsPasse.historique.get(0).date)+1;
+			}
+			else
+				Fenetre.valeurTpsPasse = 0;
 	}
 	else
 		temps.cancel();
+		TempsPasse.terminer = false;
 	}
 
 }

@@ -200,21 +200,23 @@ public class Fenetre extends JFrame {
     }// </editor-fold>                        
 
 
-    Timer timer; // Classe Timer
+    Timer timer = null; // Classe Timer
     TempsPasse tpsPasse; // Classe TempsPasse
     TempsRecule tpsRecule; // Classe TempsRecule
-    int verifTimerLance = 0; // Timer lancé = 1, timer arrêté = 0
-    int valeurTpsPasse = 0; // Valeur du temps passé
+    public static int valeurTpsPasse = 0; // Valeur du temps passé
     boolean verifScenario = false;
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {
         // On vérifie si le timer n'a pas encore été lancé
-    	if(verifTimerLance == 0 && verifScenario && !TempsPasse.terminer) {
-    		verifTimerLance = 1; // Timer démarré
+    	if(  verifScenario && !TempsPasse.terminer) {
     		new Controle().afficherDate();
+    	
+    		if(timer!=null)
+    			timer.cancel();
     		
     		timer = new Timer();
-    		TempsPasse.temps = timer;
+        	System.out.println("test");
+
     		
     		/*
     		 * Classe TempsPasse initialisé à "valeurTpsPasse"
@@ -223,7 +225,7 @@ public class Fenetre extends JFrame {
     		 * 
     		 */
     		
-    		tpsPasse = new TempsPasse(valeurTpsPasse);
+    		tpsPasse = new TempsPasse(timer);
     		
     		
     		
@@ -234,42 +236,44 @@ public class Fenetre extends JFrame {
 
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {
     	// On vérifie si le timer a déjà été lancé
-    	if(verifTimerLance == 1) {
-    		verifTimerLance = 0; // Timer arrêté
+    
+    		 // Timer arrêté
     		
     		/*
     		 * On récupère la valeur du temps passé dans la variable "valeurTpsPasse" pour pouvoir reprendre
     		 * après la pause
     		 */
-        	valeurTpsPasse = tpsPasse.getTpsPasse();
         	
         	// On arrête le compteur
         	timer.cancel();
-    	}
+    	
     }
     
     private void avanceActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        if(verifTimerLance == 0) {
-    		verifTimerLance = 1;
+   
     		new Controle().afficherDate();
-    		TempsPasse.temps = timer;
-
+    		
+    		if(timer!=null)
+    			timer.cancel();
+    		
     		timer = new Timer();
-    		tpsPasse = new TempsPasse(valeurTpsPasse);
+    		tpsPasse = new TempsPasse(timer);
     		
     		// Timer qui débute dans 500 millisecondes et qui compte toutes les 500 millisecondes
     		timer.schedule(tpsPasse, 500, 500);
-    	}
+    	
     }
     
     private void reculeActionPerformed(java.awt.event.ActionEvent evt) {
     	
-    	if(verifScenario && !TempsPasse.historique.isEmpty() && (verifTimerLance == 0 || TempsPasse.terminer)){
+    	if(!TempsPasse.historique.isEmpty() ){
         		
         		new Controle().afficherDate();
+        		if(timer!=null)
+        			timer.cancel();
         		
         		timer = new Timer();
-        		TempsRecule.temps = timer;
+        		
         		
         		/*
         		 * Classe TempsPasse initialisé à "valeurTpsPasse"
@@ -278,7 +282,7 @@ public class Fenetre extends JFrame {
         		 * 
         		 */
         		
-        		tpsRecule = new TempsRecule(valeurTpsPasse);
+        		tpsRecule = new TempsRecule(timer);
         		
         		
         		
