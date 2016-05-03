@@ -59,7 +59,6 @@ public class TempsPasse extends TimerTask {
 							 int y =plateau.trans.get(i).listeCellule.get(j).y;
 							 Cellule tempC = plateau.plateau[y][x];
 							 tempT.listeCellule.add(tempC);
-
 							 
 					}
 					historique.push(tempT);

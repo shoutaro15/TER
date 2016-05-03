@@ -102,7 +102,7 @@ public class Lecture {
 
 								etat = new ArrayList<Integer>();
 								etat.add(Integer.parseInt(tempString));
-								temp = new Cellule(colonne, line, etat);
+								temp = new Cellule(line, colonne, etat);
 								this.p.plateau[colonne][line] = temp;
 
 								line++;
