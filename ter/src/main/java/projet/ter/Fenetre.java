@@ -42,10 +42,12 @@ public class Fenetre extends JFrame {
     private JLabel legend;
 	JFrame frame = new JFrame();
 
-    private JButton pause;
+    
     private JButton avance;
     private JButton play;
     private JButton recule;
+    private JButton pause;
+    private JButton stop ;
     private JButton ChargerFicher;
     
     // End of variables declaration 
@@ -69,144 +71,157 @@ public class Fenetre extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents() {
-    	Legende = new javax.swing.JPanel();
-        legend = new javax.swing.JLabel();
-        ConteneurBoutons = new javax.swing.JPanel();
-        recule = new javax.swing.JButton();
-        play = new javax.swing.JButton();
-        pause = new javax.swing.JButton();
-        ChargerFicher = new javax.swing.JButton();
-        avance = new javax.swing.JButton();
-        Scène = new javax.swing.JPanel();
+    	 Legende = new javax.swing.JPanel();
+         legend = new javax.swing.JLabel();
+         ConteneurBoutons = new javax.swing.JPanel();
+         recule = new javax.swing.JButton();
+         play = new javax.swing.JButton();
+         pause = new javax.swing.JButton();
+         ChargerFicher = new javax.swing.JButton();
+         avance = new javax.swing.JButton();
+         stop = new javax.swing.JButton();
+         Scène = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Fenetre");
-        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+         setTitle("Fenetre");
+         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
-        Legende.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+         Legende.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        legend.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        legend.setText("Légende");
+         legend.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+         legend.setText("Légende");
 
-        ConteneurBoutons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ConteneurBoutons.setToolTipText("");
+         ConteneurBoutons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+         ConteneurBoutons.setToolTipText("");
 
-        recule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        recule.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reculeActionPerformed(evt);
-            }	
-        });
+         recule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+         recule.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 reculeActionPerformed(evt);
+             }
+         });
 
-        play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/play.png"))); // NOI18N
-        play.setBorder(null);
-        play.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playActionPerformed(evt);
-            }
-        });
+         play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/play.png"))); // NOI18N
+         play.setBorder(null);
+         play.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 playActionPerformed(evt);
+             }
+         });
 
-        pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pause.png"))); // NOI18N
-        pause.setBorder(null);
-        pause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pauseActionPerformed(evt);
-            }
-        });
+         pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pause.png"))); // NOI18N
+         pause.setBorder(null);
+         pause.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 pauseActionPerformed(evt);
+             }
+         });
 
-        ChargerFicher.setText("Charger un Fichier");
-        ChargerFicher.setBorder(null);
-        ChargerFicher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChargerFicherActionPerformed(evt);
-            }
-        });
+         ChargerFicher.setText("Charger un Fichier");
+         ChargerFicher.setBorder(null);
+         ChargerFicher.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 ChargerFicherActionPerformed(evt);
+             }
+         });
 
-        avance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/forward.png"))); // NOI18N
-        avance.setBorder(null);
-        avance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avanceActionPerformed(evt);
-            }
-        });
+         avance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/forward.png"))); // NOI18N
+         avance.setBorder(null);
+         avance.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 avanceActionPerformed(evt);
+             }
+         });
 
-        javax.swing.GroupLayout ConteneurBoutonsLayout = new javax.swing.GroupLayout(ConteneurBoutons);
-        ConteneurBoutons.setLayout(ConteneurBoutonsLayout);
-        ConteneurBoutonsLayout.setHorizontalGroup(
-            ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConteneurBoutonsLayout.createSequentialGroup()
-                .addGap(0, 37, Short.MAX_VALUE)
-                .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
-                        .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(avance, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26))
-        );
-        ConteneurBoutonsLayout.setVerticalGroup(
-            ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(avance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pause, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
+         stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.png"))); // NOI18N
+         stop.setBorder(null);
+         stop.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 stopActionPerformed(evt);
+             }
+         });
 
-        javax.swing.GroupLayout LegendeLayout = new javax.swing.GroupLayout(Legende);
-        Legende.setLayout(LegendeLayout);
-        LegendeLayout.setHorizontalGroup(
-            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ConteneurBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(LegendeLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(legend)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        LegendeLayout.setVerticalGroup(
-            LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LegendeLayout.createSequentialGroup()
-                .addComponent(legend)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
-                .addComponent(ConteneurBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+         javax.swing.GroupLayout ConteneurBoutonsLayout = new javax.swing.GroupLayout(ConteneurBoutons);
+         ConteneurBoutons.setLayout(ConteneurBoutonsLayout);
+         ConteneurBoutonsLayout.setHorizontalGroup(
+             ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
+                 .addContainerGap()
+                 .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                 .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                 .addComponent(stop, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                 .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                 .addComponent(avance, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addContainerGap())
+             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConteneurBoutonsLayout.createSequentialGroup()
+                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                 .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addGap(81, 81, 81))
+         );
+         ConteneurBoutonsLayout.setVerticalGroup(
+             ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGroup(ConteneurBoutonsLayout.createSequentialGroup()
+                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                 .addGroup(ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                     .addComponent(avance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(pause, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                     .addComponent(stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                 .addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addGap(23, 23, 23))
+         );
 
-        javax.swing.GroupLayout ScèneLayout = new javax.swing.GroupLayout(Scène);
-        Scène.setLayout(ScèneLayout);
-        ScèneLayout.setHorizontalGroup(
-            ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
-        );
-        ScèneLayout.setVerticalGroup(
-            ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+         javax.swing.GroupLayout LegendeLayout = new javax.swing.GroupLayout(Legende);
+         Legende.setLayout(LegendeLayout);
+         LegendeLayout.setHorizontalGroup(
+             LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addComponent(ConteneurBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+             .addGroup(LegendeLayout.createSequentialGroup()
+                 .addGap(113, 113, 113)
+                 .addComponent(legend)
+                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+         );
+         LegendeLayout.setVerticalGroup(
+             LegendeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGroup(LegendeLayout.createSequentialGroup()
+                 .addComponent(legend)
+                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                 .addComponent(ConteneurBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Scène, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Legende, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Legende, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Scène, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+         javax.swing.GroupLayout ScèneLayout = new javax.swing.GroupLayout(Scène);
+         Scène.setLayout(ScèneLayout);
+         ScèneLayout.setHorizontalGroup(
+             ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGap(0, 415, Short.MAX_VALUE)
+         );
+         ScèneLayout.setVerticalGroup(
+             ScèneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGap(0, 0, Short.MAX_VALUE)
+         );
 
-        pack();
+         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+         getContentPane().setLayout(layout);
+         layout.setHorizontalGroup(
+             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                 .addComponent(Scène, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                 .addGap(18, 18, 18)
+                 .addComponent(Legende, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+         );
+         layout.setVerticalGroup(
+             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+             .addComponent(Legende, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+             .addComponent(Scène, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+         );
+
+         pack();
     }// </editor-fold>                        
 
 
@@ -258,6 +273,11 @@ public class Fenetre extends JFrame {
         	timer.cancel();
     	
     }
+    private void stopActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        // TODO add your handling code here:
+         System.out.println ("stop") ;
+    } 
+    
     
     private void avanceActionPerformed(java.awt.event.ActionEvent evt) {                                       
    
