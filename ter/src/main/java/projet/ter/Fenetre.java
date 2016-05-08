@@ -244,8 +244,6 @@ public class Fenetre extends JFrame {
     		vitesseAvance = 0;
     		vitesseRecule = 0;
     		timer = new Timer();
-        	System.out.println("test");
-
     		
     		/*
     		 * Classe TempsPasse initialisé à "valeurTpsPasse"
