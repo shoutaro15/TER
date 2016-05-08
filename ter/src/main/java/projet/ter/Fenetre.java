@@ -37,8 +37,9 @@ public class Fenetre extends JFrame {
     private JPanel Legende;
     private JPanel Scène;
 	public static String fichier = "";
-	public static Lecture test = new Lecture();
-	public static Plateau test2 = new Plateau();
+	public static Lecture lecture = new Lecture();
+	public static Plateau plateau = new Plateau();
+
     private JLabel legend;
 	JFrame frame = new JFrame();
 
@@ -228,6 +229,8 @@ public class Fenetre extends JFrame {
     Timer timer = null; // Classe Timer
     TempsPasse tpsPasse; // Classe TempsPasse
     TempsRecule tpsRecule; // Classe TempsRecule
+    int vitesseAvance = 0;
+    int vitesseRecule = 0;
     public static int valeurTpsPasse = 0; // Valeur du temps passé
     boolean verifScenario = false;
 
@@ -238,7 +241,8 @@ public class Fenetre extends JFrame {
     	
     		if(timer!=null)
     			timer.cancel();
-    		
+    		vitesseAvance = 0;
+    		vitesseRecule = 0;
     		timer = new Timer();
         	System.out.println("test");
 
@@ -271,11 +275,18 @@ public class Fenetre extends JFrame {
         	
         	// On arrête le compteur
         	timer.cancel();
+        	vitesseAvance = 0;
+    		vitesseRecule = 0;
     	
     }
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        // TODO add your handling code here:
-         System.out.println ("stop") ;
+		plateau = lecture.lectureTxt(fichier);
+		TempsPasse.miseAZero();
+		valeurTpsPasse=0;
+		timer.cancel();
+		vitesseAvance = 0;
+		vitesseRecule = 0;;
+    	this.Scène.repaint();
     } 
     
     
@@ -286,11 +297,17 @@ public class Fenetre extends JFrame {
     		if(timer!=null)
     			timer.cancel();
     		
+    		vitesseRecule=0;
+    		if(vitesseAvance>=8)
+        		vitesseAvance = 0;
+    		
+    		
     		timer = new Timer();
     		tpsPasse = new TempsPasse(timer);
+    		vitesseAvance++;
     		
     		// Timer qui débute dans 500 millisecondes et qui compte toutes les 500 millisecondes
-    		timer.schedule(tpsPasse, 500, 500);
+    		timer.schedule(tpsPasse, 500/vitesseAvance, 500/vitesseAvance);
     	
     }
     
@@ -303,6 +320,10 @@ public class Fenetre extends JFrame {
         			timer.cancel();
         		
         		timer = new Timer();
+        		vitesseAvance = 0;
+        		if(vitesseRecule>=8)
+        		vitesseRecule = 0;
+        		
         		
         		
         		/*
@@ -315,9 +336,9 @@ public class Fenetre extends JFrame {
         		tpsRecule = new TempsRecule(timer);
         		
         		
-        		
+        		vitesseRecule++;
         		// Timer qui débute dans 1 seconde et qui compte toutes les secondes
-        		timer.schedule(tpsRecule, 1000, 1000);
+        		timer.schedule(tpsRecule, 1000/vitesseRecule, 1000/vitesseRecule);
         	}
         }                                    
 
@@ -333,31 +354,27 @@ public class Fenetre extends JFrame {
      * 
      * @param evt clic sur le bouton
      */
-    private void ChargerFicherActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-    	System.out.println ("charge") ;
-    	
+    private void ChargerFicherActionPerformed(java.awt.event.ActionEvent evt) {                                                  	
 		JFileChooser ouvrirFichier = new JFileChooser();
         ouvrirFichier.setFileFilter(new FileNameExtensionFilter("Fichier texte (.txt)", "txt"));
 
     	if(ouvrirFichier.showDialog(null, "Importer un scénario") == JFileChooser.APPROVE_OPTION) {
     		File fichiertemp = ouvrirFichier.getSelectedFile();
     		fichier = fichiertemp.toString();
-    		test2 = test.lectureTxt(fichier);
-	
+    		plateau = lecture.lectureTxt(fichier);
             
             this.Scène.setLayout(new BorderLayout());
 
     		Grille neutre = null;
     		
-    		if(test2.senario.equals("feu")){
-    			neutre = new GrilleHex(test2);
+    		if(plateau.senario.equals("feu")){
+    			neutre = new GrilleHex(plateau);
     			verifScenario = true;
 
     			
     		}
-    		if(test2.senario.equals("avion")){
-    			neutre = new GrilleCarre(test2);
+    		if(plateau.senario.equals("avion")){
+    			neutre = new GrilleCarre(plateau);
     			verifScenario = true;
 
     			
@@ -365,13 +382,13 @@ public class Fenetre extends JFrame {
     		/* Partie
     		 * Legende 
     		ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
-    		 File folder = new File(neutre.chemin+test2.senario+"/icone/");
+    		 File folder = new File(neutre.chemin+plateau.senario+"/icone/");
  		     File[] listOfFiles = folder.listFiles();
  		     int compteurFile =0;
 	 		    for (File file : listOfFiles) {
 	 		        if (file.isFile()) {
 	 		            System.out.println(file.getName());
-	 		            images.add( new ImageIcon(neutre.chemin+test2.senario+"/icone/"+file.getName()));
+	 		            images.add( new ImageIcon(neutre.chemin+plateau.senario+"/icone/"+file.getName()));
 	 		            compteurFile++;
 	 		        }
 	 		    }
@@ -407,11 +424,11 @@ public class Fenetre extends JFrame {
             
     		TempsPasse.fenetre = this.Scène;
     		TempsPasse.grille = neutre;
-    		TempsPasse.plateau = test2;
+    		TempsPasse.plateau = plateau;
     		
     		TempsRecule.fenetre = this.Scène;
     		TempsRecule.grille = neutre;
-    		TempsRecule.plateau = test2;
+    		TempsRecule.plateau = plateau;
     		
     		SwingUtilities.updateComponentTreeUI(this);
 

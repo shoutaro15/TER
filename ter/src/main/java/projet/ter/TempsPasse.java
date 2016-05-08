@@ -32,18 +32,13 @@ public class TempsPasse extends TimerTask {
 	public TempsPasse( Timer temps) {
 		this.temps = temps;
 	}
-	
 
-	
-	/*
-	public int getTpsPasse() {
-		return this.tpsPasse;
+	public static void miseAZero(){
+		terminer = false;
+		historique.removeAllElements();
 	}
 	
-	public void setTpsPasse(int tpsPasse) {
-		this.tpsPasse = tpsPasse;
-	}
-	*/
+	
 	/**
 	 * Lance le compteur.
 	 */
