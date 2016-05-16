@@ -19,7 +19,7 @@ import projet.ter.lecture.Plateau;
 
 public class GrilleHex extends Grille{
 	//final static int cote=16;
-	final static int cote=40;
+	final static int cote=22;
 
 	
 	public GrilleHex(Plateau plateau){
@@ -29,14 +29,19 @@ public class GrilleHex extends Grille{
 		plateaux = new Shape[ligne][colonne];
 	}
 	
+	/*
+	 * Cette fonction permet de actualiser les composants d'un plateau hexagone
+	 */
 	
 	public void paintComponent(Graphics g){
 				Polygon test = GrilleHex.getPolygon(0, 0, cote);
 				Rectangle r=test.getBounds();
 				Graphics2D g2d = (Graphics2D) g;
+				System.out.println(donne.tailleX+" "+donne.tailleY);
 
 			
-	    		 
+	    	
+				
 
 					
 				for(int l=0;l<ligne;l=l+2){
@@ -54,7 +59,9 @@ public class GrilleHex extends Grille{
 						
 						g.setClip(poly);
 						
-						
+						/*
+						 * On charge les images puis on les dessinent sur le plateau  avec une transparence
+						 */
 						
 						for(int i = 0 ; i<etat.size();i++){
 							float opa = (10-(i*2));	

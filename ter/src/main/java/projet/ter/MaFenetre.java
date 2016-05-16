@@ -6,7 +6,7 @@ import projet.ter.lecture.Plateau;
 
 public class MaFenetre  extends JFrame{
 	
-	MaFenetre(){
+	MaFenetre(){ 
 
 	    //D�finit un titre pour notre fen�tre
 	    this.setTitle("Dessin d'une grille ");
@@ -35,8 +35,7 @@ public class MaFenetre  extends JFrame{
 	    //Et enfin, la rendre visible      
 	    
 	    this.setVisible(true);
+	
 	}
-	
-	
 
 }

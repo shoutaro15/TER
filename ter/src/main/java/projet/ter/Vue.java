@@ -1,8 +1,7 @@
 package projet.ter;
 
 
-import projet.ter.lecture.Lecture;
-import projet.ter.lecture.Plateau;
+
 
 public class Vue {
 

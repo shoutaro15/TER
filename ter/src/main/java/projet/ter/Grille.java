@@ -18,7 +18,9 @@ abstract class Grille extends JPanel{
 	protected  String chemin = "src/main/java/";
 	
 	
-	
+	/*Fonction qui permet d'éxécuter une transition sur le plateau a un instant T
+	 * 
+	 */
 	public void chargeTransition(Transition t){
 
 		for(int i = 0 ; i<t.listeCellule.size() ; i++){

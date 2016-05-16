@@ -17,5 +17,5 @@ public class Controle {
 	
 	public void afficherDate() {
 		System.out.println(formatDate.format(date));
-	}
+	} 
 }
