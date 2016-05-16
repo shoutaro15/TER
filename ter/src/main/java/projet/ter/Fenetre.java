@@ -360,6 +360,12 @@ public class Fenetre extends JFrame {
     		File fichiertemp = ouvrirFichier.getSelectedFile();
     		fichier = fichiertemp.toString();
     		plateau = lecture.lectureTxt(fichier);
+    		
+    		
+    		
+    			
+    			
+    		
             
             this.Scène.setLayout(new BorderLayout());
 

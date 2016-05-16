@@ -11,7 +11,7 @@ public class Lecture {
 	public String resultat;
 
 	/************
-	 * METHODES
+	 * METHODES 
 	 ************/
 	/*fonction qui qui test le delimiteur de partie*/
 	public boolean testDelimiteur(String chaine){
@@ -104,7 +104,6 @@ public class Lecture {
 								etat.add(Integer.parseInt(tempString));
 								temp = new Cellule(line, colonne, etat);
 								this.p.plateau[colonne][line] = temp;
-
 								line++;
 							}
 						}

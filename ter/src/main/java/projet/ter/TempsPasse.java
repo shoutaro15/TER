@@ -14,7 +14,7 @@ import projet.ter.lecture.Transition;
  * Classe TempsPasse.
  *
  * Compte le temps passé durant la simulation.
- */
+ */ 
 public class TempsPasse extends TimerTask {
 	public static JPanel fenetre;
 	public static Grille grille;
