@@ -410,46 +410,54 @@ public class Fenetre extends JFrame {
 	 		   BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.LINE_AXIS);
 	 	
 	 		
-    		    JLabel jlabel = new JLabel("This is a label");
+    		    JLabel jlabel = new JLabel("ezrararar"+lecture.resultat);
     		    jlabel.setFont(new Font("Verdana",1,20));
     	
 
     		   // panel.setLayout(new GridLayout(10, 10));
-    		    
     		
-    		    Legende.add(new JLabel("test"));
-    		    Legende.add(panel);
     		 //   Legende.add(this.ConteneurBoutons);
     		    
     		    for(int i =0 ;i<images.size();i++){
     		    	 Image img = images.get(i).getImage();
     		    	 BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
     		    	 Graphics g = bi.createGraphics();
-    		    	g.drawImage(img, 0, 0, 20, 20, null);
+    		    	g.drawImage(img, 0, 0, 15, 15, null);
     		    	 ImageIcon newIcon = new ImageIcon(bi);
-    		    	panel.add(new JLabel(newIcon));
-    		    	panel.add(Box.createRigidArea(new Dimension(5,0)));
-    		    	panel.add(new JLabel("Etat n°"+i));
-    		    	panel.add(Box.createRigidArea(new Dimension(5,0)));
-
+    		    	 panel.add(new JLabel(newIcon));
+    		    	 panel.add(Box.createRigidArea(new Dimension(1,0)));
+    		    	 panel.add(new JLabel("Etat n°"+i));
+    		    	 panel.add(Box.createRigidArea(new Dimension(1,0)));
+    		  
 
     		    	//Legende.setBackground(Color.green);
     		    }
+
 		    //	Legende.setBackground(Color.green);
+		    	panel.add( new JLabel("ezrararar"));
 
     		    Legende.validate();
-    		
-
-    		    panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
-    		    frame.setContentPane(panel);
-    		  
+    		    panel.add(jlabel);
+                panel.setVisible(true);
+                Legende.repaint();
+                this.remove(Legende);
+                this.validate();
+                panel.add(jlabel);
+    		    //panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
+    		     frame.setContentPane(panel);
+    		    Legende.add(panel);
+    		    this.setLayout(new BorderLayout());
+    		    this.getContentPane().add(Scène, BorderLayout.CENTER);
+    		    this.getContentPane().add(Legende,BorderLayout.EAST);
+    		//   panel.setBackground(Color.black);
+   		     //   Legende.setBackground(Color.blue);
+             //panel.setBackground(Color.black);
     		    frame.setSize(400, 400);
     		    frame.setLocationRelativeTo(null);
     		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     		    frame.setVisible(true);
     		   
-    		   
-    		    
+    		   panel.setBounds(15, 15, Legende.getWidth(), Legende.getHeight());	    
             this.Scène.add(neutre,BorderLayout.CENTER);
             this.Scène.validate();
       	
@@ -462,10 +470,15 @@ public class Fenetre extends JFrame {
     		TempsRecule.plateau = plateau;
     		
     		SwingUtilities.updateComponentTreeUI(this);
+		
+		
 
     		System.out.println(fichier);
     	}
     }  
+    
+    
+
 
                    
 }
