@@ -15,15 +15,6 @@ public class Plateau {
 		
 	}
 	
-	public Plateau(int tailleX, int tailleY, int forme, int temps, String senario){
-		this.typeTemps = temps;
-		this.forme = forme;
-		this.senario = senario;
-		this.tailleX = tailleX;
-		this.tailleY = tailleY;
-		this.plateau = new Cellule[this.tailleX][this.tailleY];
-	}
-	
 	public Plateau(Plateau p){
 		this.forme = p.forme;
 		this.plateau = p.plateau;
