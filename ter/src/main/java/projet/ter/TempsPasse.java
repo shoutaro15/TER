@@ -69,9 +69,6 @@ public class TempsPasse extends TimerTask {
 			temps.cancel();
 			}
 			
-		
-		
-System.out.println(Fenetre.valeurTpsPasse);
 		Fenetre.valeurTpsPasse++;
 	}
 }
