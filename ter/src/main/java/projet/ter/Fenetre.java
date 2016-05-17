@@ -273,24 +273,30 @@ public class Fenetre extends JFrame {
     		 */
         	
         	// On arrête le compteur
+    		if(timer!=null)
         	timer.cancel();
+    		
         	vitesseAvance = 0;
     		vitesseRecule = 0;
+    		
     	
     }
-    private void stopActionPerformed(java.awt.event.ActionEvent evt) {                                     
+    private void stopActionPerformed(java.awt.event.ActionEvent evt) {     
+    	if(verifScenario){
 		plateau = lecture.lectureTxt(fichier);
 		TempsPasse.miseAZero();
 		valeurTpsPasse=0;
+		if(timer!=null)
 		timer.cancel();
 		vitesseAvance = 0;
 		vitesseRecule = 0;;
     	this.Scène.repaint();
+    	}
     } 
     
     
     private void avanceActionPerformed(java.awt.event.ActionEvent evt) {                                       
-   
+    	if(verifScenario){
     		new Controle().afficherDate();
     		
     		if(timer!=null)
@@ -307,6 +313,7 @@ public class Fenetre extends JFrame {
     		
     		// Timer qui débute dans 500 millisecondes et qui compte toutes les 500 millisecondes
     		timer.schedule(tpsPasse, 500/vitesseAvance, 500/vitesseAvance);
+    	}
     	
     }
     
