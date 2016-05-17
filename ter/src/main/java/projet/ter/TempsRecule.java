@@ -43,7 +43,6 @@ public class TempsRecule extends TimerTask {
 				
 					 int x =temp.listeCellule.get(j).x;
 					 int y =temp.listeCellule.get(j).y;
-					 System.out.println(" x:" + x + " y:" + y);
 					 plateau.plateau[y][x] = temp.listeCellule.get(j);
 		    		 fenetre.repaint(); 
 			}

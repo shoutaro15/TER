@@ -37,13 +37,7 @@ public class GrilleHex extends Grille{
 				Polygon test = GrilleHex.getPolygon(0, 0, cote);
 				Rectangle r=test.getBounds();
 				Graphics2D g2d = (Graphics2D) g;
-				System.out.println(donne.tailleX+" "+donne.tailleY);
-
-			
-	    	
-				
-
-					
+							
 				for(int l=0;l<ligne;l=l+2){
 					for(int c=0;c<colonne;c++){
 						

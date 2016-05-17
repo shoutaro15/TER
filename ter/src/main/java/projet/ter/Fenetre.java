@@ -398,7 +398,7 @@ public class Fenetre extends JFrame {
  		     int compteurFile =0;
 	 		    for (File file : listOfFiles) {
 	 		        if (file.isFile()) {
-	 		            System.out.println(file.getName());
+	 		 
 	 		            images.add( new ImageIcon(neutre.chemin+plateau.senario+"/icone/"+file.getName()));
 	 		            compteurFile++;
 	 		        }
@@ -473,7 +473,6 @@ public class Fenetre extends JFrame {
 		
 		
 
-    		System.out.println(fichier);
     	}
     }  
     

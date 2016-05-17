@@ -8,7 +8,7 @@ public class Lecture {
 	 * ATTRIBUTS
 	 * **********/
 	public Plateau p = new Plateau();
-	public String resultat;
+	public String resultat = "";
 
 	/************
 	 * METHODES 
@@ -180,7 +180,10 @@ public class Lecture {
 						}
 					}
 				}else if(delimiteur == 2){ //partie food ou se trouve la partie resultat
-					this.resultat = ligne;
+		
+						this.resultat = this.resultat + "\n" + ligne;
+					
+					
 				}
 
 			}
