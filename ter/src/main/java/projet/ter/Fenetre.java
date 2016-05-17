@@ -407,13 +407,9 @@ public class Fenetre extends JFrame {
 	 		    JFrame frame = new JFrame();  
     		    JPanel panel = new JPanel();
 
-	 		   BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.LINE_AXIS);
+	 		   BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.PAGE_AXIS);
 	 	
 	 		
-    		    JLabel jlabel = new JLabel("ezrararar"+lecture.resultat);
-    		    jlabel.setFont(new Font("Verdana",1,20));
-    	
-
     		   // panel.setLayout(new GridLayout(10, 10));
     		
     		 //   Legende.add(this.ConteneurBoutons);
@@ -422,7 +418,7 @@ public class Fenetre extends JFrame {
     		    	 Image img = images.get(i).getImage();
     		    	 BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
     		    	 Graphics g = bi.createGraphics();
-    		    	g.drawImage(img, 0, 0, 15, 15, null);
+    		    	g.drawImage(img, 0, 0, 25, 25, null);
     		    	 ImageIcon newIcon = new ImageIcon(bi);
     		    	 panel.add(new JLabel(newIcon));
     		    	 panel.add(Box.createRigidArea(new Dimension(1,0)));
@@ -432,17 +428,29 @@ public class Fenetre extends JFrame {
 
     		    	//Legende.setBackground(Color.green);
     		    }
+    		    String [] result=new String[lecture.resultat.split("\n").length];
+    		    result = lecture.resultat.split("\n");
+    		   
+    		    panel.add(new JLabel("                                              "));
+
+    		    for(int i =1 ; i<result.length;i++){
+    		    	
+    		    	JLabel temp =new JLabel(result[i]);
+    		    	temp.setFont(new Font("Verdana",1,15));
+        		    panel.add(new JLabel(result[i]));
+        		    System.out.println(result[i]);
+        		 
+        	
+    	 		}
 
 		    //	Legende.setBackground(Color.green);
-		    	panel.add( new JLabel("ezrararar"));
 
     		    Legende.validate();
-    		    panel.add(jlabel);
+    		   
                 panel.setVisible(true);
                 Legende.repaint();
                 this.remove(Legende);
                 this.validate();
-                panel.add(jlabel);
     		    //panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
     		     frame.setContentPane(panel);
     		    Legende.add(panel);
@@ -457,7 +465,7 @@ public class Fenetre extends JFrame {
     		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     		    frame.setVisible(true);
     		   
-    		   panel.setBounds(15, 15, Legende.getWidth(), Legende.getHeight());	    
+    		 panel.setBounds(15, 15, Legende.getWidth(), Legende.getHeight()+350);	    
             this.Scène.add(neutre,BorderLayout.CENTER);
             this.Scène.validate();
       	

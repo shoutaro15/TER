@@ -61,7 +61,7 @@ public class GrilleCarre extends Grille {
 						
 
 								
-							image.get(i).setRGB(20, 150, 50);
+							//image.get(i).setRGB(20, 150, 50);
 
 						
 						g.drawImage(image.get(i), rect.x, rect.y, rect.height, rect.width, null);
