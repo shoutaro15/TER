@@ -16,7 +16,7 @@ public class MaFenetre  extends JFrame{
 	    this.setSize(500, 500);
 
 	    //Nous demandons maintenant � notre objet de se positionner au centre
-
+ 
 	    this.setLocationRelativeTo(null);
 
 	    //Termine le processus lorsqu'on clique sur la croix rouge

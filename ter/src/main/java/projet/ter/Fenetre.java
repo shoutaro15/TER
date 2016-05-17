@@ -2,6 +2,7 @@ package projet.ter;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -383,8 +384,7 @@ public class Fenetre extends JFrame {
 
     			
     		}
-    		/* Partie
-    		 * Legende 
+    	
     		ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
     		 File folder = new File(neutre.chemin+plateau.senario+"/icone/");
  		     File[] listOfFiles = folder.listFiles();
@@ -401,31 +401,51 @@ public class Fenetre extends JFrame {
     		    JPanel panel = new JPanel();
 
 	 		   BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.LINE_AXIS);
+	 	
 	 		
-    		    frame.add(panel);
     		    JLabel jlabel = new JLabel("This is a label");
     		    jlabel.setFont(new Font("Verdana",1,20));
+    	
+
+    		   // panel.setLayout(new GridLayout(10, 10));
+    		    
+    		
+    		    Legende.add(new JLabel("test"));
+    		    Legende.add(panel);
+    		 //   Legende.add(this.ConteneurBoutons);
     		    
     		    for(int i =0 ;i<images.size();i++){
     		    	 Image img = images.get(i).getImage();
     		    	 BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
     		    	 Graphics g = bi.createGraphics();
-    		    	g.drawImage(img, 0, 0, 50, 50, null);
+    		    	g.drawImage(img, 0, 0, 20, 20, null);
     		    	 ImageIcon newIcon = new ImageIcon(bi);
     		    	panel.add(new JLabel(newIcon));
+    		    	panel.add(Box.createRigidArea(new Dimension(5,0)));
+    		    	panel.add(new JLabel("Etat n°"+i));
+    		    	panel.add(Box.createRigidArea(new Dimension(5,0)));
+
+
+    		    	//Legende.setBackground(Color.green);
     		    }
+		    //	Legende.setBackground(Color.green);
+
+    		    Legende.validate();
+    		
+
     		    panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
-    		    frame.add(panel);
+    		    frame.setContentPane(panel);
+    		  
     		    frame.setSize(400, 400);
     		    frame.setLocationRelativeTo(null);
     		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     		    frame.setVisible(true);
-    		  */  
+    		   
     		   
     		    
             this.Scène.add(neutre,BorderLayout.CENTER);
             this.Scène.validate();
-            
+      	
     		TempsPasse.fenetre = this.Scène;
     		TempsPasse.grille = neutre;
     		TempsPasse.plateau = plateau;
