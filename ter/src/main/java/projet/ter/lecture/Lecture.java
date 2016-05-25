@@ -96,15 +96,30 @@ public class Lecture {
 
 						for(int i = 0; i<ligne.length(); i++){
 							if(ligne.charAt(i) == ';'){
-								tempString = "";
-							}else{
-								tempString += ligne.charAt(i); 
-
+								
 								etat = new ArrayList<Integer>();
-								etat.add(Integer.parseInt(tempString));
+//System.out.println(colonne);
+								for(int j = 0; j<tempString.length(); j++){
+
+									if(tempString.charAt(j) == '-'){
+										etat.add(Integer.parseInt(tempEtat));
+										tempEtat = "";
+									}
+									else{
+										tempEtat += tempString.charAt(j);
+
+									}
+								}
+								etat.add(Integer.parseInt(tempEtat));
+
 								temp = new Cellule(line, colonne, etat);
 								this.p.plateau[colonne][line] = temp;
 								line++;
+								tempEtat = "";
+								tempString = "";
+
+							}else{
+								tempString += ligne.charAt(i); 
 							}
 						}
 						colonne++;
@@ -180,10 +195,10 @@ public class Lecture {
 						}
 					}
 				}else if(delimiteur == 2){ //partie food ou se trouve la partie resultat
-		
-						this.resultat = this.resultat + "\n" + ligne;
-					
-					
+
+					this.resultat = this.resultat + "\n" + ligne;
+
+
 				}
 
 			}
