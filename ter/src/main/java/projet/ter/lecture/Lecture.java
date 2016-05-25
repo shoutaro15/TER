@@ -22,7 +22,13 @@ public class Lecture {
 			return false;
 		}
 	}
-
+	
+	public void afficheList(ArrayList<Integer> liste){
+		
+		for(int i =0; i< liste.size(); i++)
+			System.out.println("etat n°" + i + " = " + liste.get(i));
+	}
+	
 	/*fonction qui parcours le fichier text(senario) ligne par ligne et qui creer un plateau selon le senario*/ 
 	public Plateau lectureTxt(String fichier){	
 		int numLigne = 0;	//compteur pour savoir sur quelle ligne on se trouve
@@ -98,7 +104,7 @@ public class Lecture {
 							if(ligne.charAt(i) == ';'){
 								
 								etat = new ArrayList<Integer>();
-//System.out.println(colonne);
+System.out.println(colonne);
 								for(int j = 0; j<tempString.length(); j++){
 
 									if(tempString.charAt(j) == '-'){
@@ -112,6 +118,7 @@ public class Lecture {
 								}
 								etat.add(Integer.parseInt(tempEtat));
 
+								afficheList(etat);
 								temp = new Cellule(line, colonne, etat);
 								this.p.plateau[colonne][line] = temp;
 								line++;
