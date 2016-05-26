@@ -33,7 +33,8 @@ public class GrilleCarre extends Grille {
 	public void paintComponent(Graphics g){  
 		
 		Graphics2D g2d = (Graphics2D) g;
-		    
+		System.out.println("Ligne : "+ligne+"Colonnee :"+colonne);
+
 		for(int l=0;l<ligne;l++){
 			for(int c=0;c<colonne;c++){
 					Rectangle rect = new Rectangle(c*coter,l*coter,coter,coter);

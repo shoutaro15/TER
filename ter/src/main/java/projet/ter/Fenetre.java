@@ -383,22 +383,29 @@ public class Fenetre extends JFrame {
 	 */
 	private void ChargerFicherActionPerformed(java.awt.event.ActionEvent evt) {                                                  	
 		JFileChooser ouvrirFichier = new JFileChooser();
+		Grille neutre = null;
 		ouvrirFichier.setFileFilter(new FileNameExtensionFilter("Fichier texte (.txt)", "txt"));
 
 		if(ouvrirFichier.showDialog(null, "Importer un scénario") == JFileChooser.APPROVE_OPTION) {
 			File fichiertemp = ouvrirFichier.getSelectedFile();
 			fichier = fichiertemp.toString();
+			if(verifScenario){
+				plateau = new Plateau();
+				lecture = new Lecture();
+				this.Scène.removeAll();;	
+			}else
+				this.Scène.setLayout(new BorderLayout());
+
+
+
 			plateau = lecture.lectureTxt(fichier);
 
+			
 
 
 
 
-
-
-			this.Scène.setLayout(new BorderLayout());
-
-			Grille neutre = null;
+			
 
 			if(plateau.senario.equals("feu")){
 				neutre = new GrilleHex(plateau);
@@ -449,13 +456,12 @@ public class Fenetre extends JFrame {
 				g.drawImage(img, 0, 0, 25, 25, null);
 				ImageIcon newIcon = new ImageIcon(bi);
 				 panel.add(new JLabel(newIcon));
-				//panel.add(Box.createRigidArea(new Dimension(1,0)));
+				panel.add(Box.createRigidArea(new Dimension(1,0)));
 				panel.add(new JLabel(""+i));
 				
-				//panel.add(Box.createRigidArea(new Dimension(1,0))); 
+				panel.add(Box.createRigidArea(new Dimension(1,0))); 
 
 
-				//Legende.setBackground(Color.green);
 			}
 			panel.add(new JLabel("             "));
 			JLabel resultat = new JLabel("Resultats de la Simuation :") ;
