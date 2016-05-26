@@ -24,6 +24,7 @@ public class Lecture {
 	}
 	
 
+
 	/*fonction qui parcours le fichier text(senario) ligne par ligne et qui creer un plateau selon le senario*/ 
 	public Plateau lectureTxt(String fichier){	
 		int numLigne = 0;	//compteur pour savoir sur quelle ligne on se trouve
