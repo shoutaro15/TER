@@ -496,9 +496,7 @@ public class Fenetre extends JFrame {
 			this.setLayout(new BorderLayout());
 			this.getContentPane().add(Scène, BorderLayout.CENTER);
 			this.getContentPane().add(Legende,BorderLayout.EAST);
-			//   panel.setBackground(Color.black);
-			//   Legende.setBackground(Color.blue);
-			//panel.setBackground(Color.black);
+			
 
 			/*  frame.setSize(400, 400);
     		    frame.setLocationRelativeTo(null);
