@@ -490,7 +490,7 @@ public class Fenetre extends JFrame {
 			//panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
 			// frame.setContentPane(panel);
 			Legende.add(panel);
-			//this.Legende.setBackground(Color.BLACK);
+			
 
 			
 			this.setLayout(new BorderLayout());
