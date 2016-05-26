@@ -506,7 +506,7 @@ public class Fenetre extends JFrame {
     		    frame.setVisible(true); */
 
 			panel.setBounds(5,5, Legende.getWidth(), h);
-			//panel.setBounds(15, 15, Legende.getWidth(),this.legend.getHeight());
+			
 
 			// panel.setBounds(15, 15, Legende.getWidth(),h -this.ConteneurBoutons.getHeight());	    
 			this.Scène.add(neutre,BorderLayout.CENTER);
