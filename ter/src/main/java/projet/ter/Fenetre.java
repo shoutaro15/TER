@@ -38,6 +38,7 @@ public class Fenetre extends JFrame {
 	private JPanel ConteneurBoutons;
 	private JPanel Legende;
 	private JPanel Scène;
+	JPanel panel = new JPanel();
 	public static String fichier = "";
 	public static Lecture lecture = new Lecture();
 	public static Plateau plateau = new Plateau();
@@ -68,16 +69,9 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setSize(1000, 600);
+		this.setMinimumSize(new Dimension(1100, 800));
 		this.setVisible(true);
-		//System.out.println(this.getWidth());
-		/*System.out.println(this.getWidth());
-    	System.out.println(this.getHeight());
-    	System.out.println(this.Legende.getHeight());
 
-    	System.out.println(this.getHeight()-this.ConteneurBoutons.getHeight() );
-
-    	System.out.println(this.ConteneurBoutons.getHeight());*/
-		System.out.println(h);
 
 	}
 
@@ -392,7 +386,16 @@ public class Fenetre extends JFrame {
 			if(verifScenario){
 				plateau = new Plateau();
 				lecture = new Lecture();
-				this.Scène.removeAll();;	
+				this.Scène.removeAll();
+				panel.removeAll();
+				TempsPasse.miseAZero();
+				valeurTpsPasse=0;
+				if(timer!=null)
+					timer.cancel();
+				vitesseAvance = 0;
+				vitesseRecule = 0;;
+				this.Scène.repaint();
+				
 			}else
 				this.Scène.setLayout(new BorderLayout());
 
@@ -402,14 +405,51 @@ public class Fenetre extends JFrame {
 
 			
 
-
-
-
-			
-
 			if(plateau.senario.equals("feu")){
 				neutre = new GrilleHex(plateau);
 				verifScenario = true;
+				
+				ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
+				File folder = new File(neutre.chemin+plateau.senario+"/icone/");
+				File[] listOfFiles = folder.listFiles();
+				for (File file : listOfFiles) {
+					if (file.isFile()) {
+
+						images.add( new ImageIcon(neutre.chemin+plateau.senario+"/icone/"+file.getName()));
+					}
+				}
+				
+	            
+			
+				
+				
+				JLabel etats = new JLabel ("Etat n°:") ;
+				etats.setFont(new Font("Tahoma", 1, 15));
+				panel.add(new JLabel("                                  "));
+				panel.add(etats);
+				panel.add(new JLabel("                                  "));
+
+			
+
+				
+
+				for(int i =0 ;i<images.size();i++){
+					Image img = images.get(i).getImage();
+					BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+					Graphics g = bi.createGraphics();
+					g.drawImage(img, 0, 0, 25, 25, null);
+					ImageIcon newIcon = new ImageIcon(bi);
+					 panel.add(new JLabel(newIcon));
+					panel.add(Box.createRigidArea(new Dimension(1,0)));
+					panel.add(new JLabel(""+i));
+					
+					panel.add(Box.createRigidArea(new Dimension(1,0))); 
+
+
+				}
+				panel.add(new JLabel("             "));
+				
+				
 
 
 			}
@@ -420,50 +460,7 @@ public class Fenetre extends JFrame {
 
 			}
 
-			ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
-			File folder = new File(neutre.chemin+plateau.senario+"/icone/");
-			File[] listOfFiles = folder.listFiles();
-			int compteurFile =0;
-			for (File file : listOfFiles) {
-				if (file.isFile()) {
-
-					images.add( new ImageIcon(neutre.chemin+plateau.senario+"/icone/"+file.getName()));
-					compteurFile++;
-				}
-			}
-            
-			// JFrame frame = new JFrame();  
-			JPanel panel = new JPanel();
-			
-			
-			BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.PAGE_AXIS);
-			JLabel etats = new JLabel ("Etat n°:") ;
-			etats.setFont(new Font("Tahoma", 1, 15));
-			panel.add(new JLabel("                                  "));
-			panel.add(etats);
-			panel.add(new JLabel("                                  "));
-
-		
-
-			// panel.setLayout(new GridLayout(10, 10));
-
-			//   Legende.add(this.ConteneurBoutons);
-
-			for(int i =0 ;i<images.size();i++){
-				Image img = images.get(i).getImage();
-				BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-				Graphics g = bi.createGraphics();
-				g.drawImage(img, 0, 0, 25, 25, null);
-				ImageIcon newIcon = new ImageIcon(bi);
-				 panel.add(new JLabel(newIcon));
-				panel.add(Box.createRigidArea(new Dimension(1,0)));
-				panel.add(new JLabel(""+i));
-				
-				panel.add(Box.createRigidArea(new Dimension(1,0))); 
-
-
-			}
-			panel.add(new JLabel("             "));
+			panel.add(new JLabel("                 "));
 			JLabel resultat = new JLabel("Resultats de la Simuation :") ;
 			resultat.setFont(new Font("Tahoma", 1, 14));
 			
@@ -472,29 +469,22 @@ public class Fenetre extends JFrame {
 			String [] result=new String[lecture.resultat.split("\n").length];
 			result = lecture.resultat.split("\n");
 
-			//panel.add(new JLabel("                                              "));
 
 			for(int i =1 ; i<result.length;i++){
 
 				JLabel temp =new JLabel(result[i]);
 				temp.setFont(new Font("Verdana",1,15));
 				panel.add(new JLabel(result[i]));
-				System.out.println(result[i]);
 
 
 			}
 
-			//	Legende.setBackground(Color.green);
 			panel.setBackground(Color.GRAY);
 
 			Legende.validate();
 
-			//panel.setVisible(true);
 			Legende.repaint();
-			//this.remove(Legende);
 			this.validate();
-			//panel.setBorder(new LineBorder(Color.BLACK)); // make it easy to see
-			// frame.setContentPane(panel);
 			Legende.add(panel);
 			
 
@@ -502,17 +492,9 @@ public class Fenetre extends JFrame {
 			this.setLayout(new BorderLayout());
 			this.getContentPane().add(Scène, BorderLayout.CENTER);
 			this.getContentPane().add(Legende,BorderLayout.EAST);
-			
-
-			/*  frame.setSize(400, 400);
-    		    frame.setLocationRelativeTo(null);
-    		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    		    frame.setVisible(true); */
 
 			panel.setBounds(5,5, Legende.getWidth(), h);
 			
-
-			// panel.setBounds(15, 15, Legende.getWidth(),h -this.ConteneurBoutons.getHeight());	    
 			this.Scène.add(neutre,BorderLayout.CENTER);
 			this.Scène.validate();
 
