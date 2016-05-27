@@ -476,7 +476,7 @@ public class Fenetre extends JFrame {
 				temp.setFont(new Font("Verdana",1,15));
 				panel.add(new JLabel(result[i]));
 
-
+ 
 			}
 
 			panel.setBackground(Color.GRAY);
