@@ -10,11 +10,11 @@ public class Plateau {
 	public int typeTemps;
 	public String senario = "";
 	public ArrayList<Transition> trans = new ArrayList<Transition>();
-	
+
 	public Plateau(){
-		
+
 	}
-	
+
 	public Plateau(Plateau p){
 		this.forme = p.forme;
 		this.plateau = p.plateau;

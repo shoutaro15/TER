@@ -44,8 +44,6 @@ public class Fenetre extends JFrame {
 	public static Plateau plateau = new Plateau();
 
 	private JLabel legend;
-	//JFrame frame = new JFrame();
-
 
 	private JButton avance;
 	private JButton play;
@@ -59,9 +57,6 @@ public class Fenetre extends JFrame {
 	int w = ecran.getSize().width;
 	int h = ecran.getSize().height; 
 
-
-
-
 	public Fenetre() {
 		//fonction qui initialise la fenetre
 		initComponents();
@@ -71,8 +66,11 @@ public class Fenetre extends JFrame {
 		this.setSize(1000, 600);
 		this.setMinimumSize(new Dimension(1100, 800));
 		this.setVisible(true);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 	}
 
 	/**
@@ -93,15 +91,12 @@ public class Fenetre extends JFrame {
 		avance = new javax.swing.JButton();
 		stop = new javax.swing.JButton();
 		Scène = new javax.swing.JPanel();
-		
+
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Fenetre");
 		setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
 		Legende.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-		/*legend.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-		legend.setText("Légende"); */
 
 		ConteneurBoutons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 		ConteneurBoutons.setToolTipText("");
@@ -152,7 +147,6 @@ public class Fenetre extends JFrame {
 				stopActionPerformed(evt);
 			}
 		});
-		//this.ConteneurBoutons.setLayout(new BoxLayout(this.ConteneurBoutons,BoxLayout.PAGE_AXIS));
 		javax.swing.GroupLayout ConteneurBoutonsLayout = new javax.swing.GroupLayout(ConteneurBoutons);
 		ConteneurBoutons.setLayout(ConteneurBoutonsLayout);
 		ConteneurBoutonsLayout.setHorizontalGroup(
@@ -169,10 +163,10 @@ public class Fenetre extends JFrame {
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(avance, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap())
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConteneurBoutonsLayout.createSequentialGroup()
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(81, 81, 81))
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConteneurBoutonsLayout.createSequentialGroup()
+								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(81, 81, 81))
 				);
 		ConteneurBoutonsLayout.setVerticalGroup(
 				ConteneurBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +178,9 @@ public class Fenetre extends JFrame {
 								.addComponent(pause, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(recule, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
 								.addComponent(stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(23, 23, 23))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(ChargerFicher, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(23, 23, 23))
 				);
 
 		javax.swing.GroupLayout LegendeLayout = new javax.swing.GroupLayout(Legende);
@@ -235,7 +229,6 @@ public class Fenetre extends JFrame {
 
 		pack();
 	}// </editor-fold>                        
-
 
 	Timer timer = null; // Classe Timer
 	TempsPasse tpsPasse; // Classe TempsPasse
@@ -343,8 +336,6 @@ public class Fenetre extends JFrame {
 			if(vitesseRecule>=8)
 				vitesseRecule = 0;
 
-
-
 			/*
 			 * Classe TempsPasse initialisé à "valeurTpsPasse"
 			 * Démarre à partir de "0" au début
@@ -354,21 +345,13 @@ public class Fenetre extends JFrame {
 
 			tpsRecule = new TempsRecule(timer);
 
-
 			vitesseRecule++;
 			// Timer qui débute dans 1 seconde et qui compte toutes les secondes
 			timer.schedule(tpsRecule, 1000/vitesseRecule, 1000/vitesseRecule);
-			
-			
+
+
 		}
 	}                                    
-
-
-
-
-
-
-
 
 	/**
 	 * Ouvre une boîte de dialogue lorsque l'on clique sur le bouton pour charger un fichier.
@@ -399,15 +382,20 @@ public class Fenetre extends JFrame {
 			}else
 				this.Scène.setLayout(new BorderLayout());
 
+<<<<<<< HEAD
 
 
 			plateau = lecture.lectureTxt(fichier);
 
 			
+=======
+			plateau = lecture.lectureTxt(fichier);			
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 
 			if(plateau.senario.equals("feu")){
 				neutre = new GrilleHex(plateau);
 				verifScenario = true;
+<<<<<<< HEAD
 				
 				ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
 				File folder = new File(neutre.chemin+plateau.senario+"/icone/");
@@ -452,23 +440,67 @@ public class Fenetre extends JFrame {
 				
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 			}
+
 			if(plateau.senario.equals("avion")){
 				neutre = new GrilleCarre(plateau);
 				verifScenario = true;
+			}
+
+<<<<<<< HEAD
+			panel.add(new JLabel("                 "));
+=======
+			ArrayList<ImageIcon> images = new ArrayList<ImageIcon>();
+			File folder = new File(neutre.chemin+plateau.senario+"/icone/");
+			File[] listOfFiles = folder.listFiles();
+			int compteurFile =0;
+			for (File file : listOfFiles) {
+				if (file.isFile()) {
+
+					images.add( new ImageIcon(neutre.chemin+plateau.senario+"/icone/"+file.getName()));
+					compteurFile++;
+				}
+			}
+
+			// JFrame frame = new JFrame();  
+			JPanel panel = new JPanel();
+
+			BoxLayout placeLegende =new BoxLayout(panel, BoxLayout.PAGE_AXIS);
+			JLabel etats = new JLabel ("Etat n°:") ;
+			etats.setFont(new Font("Tahoma", 1, 15));
+			panel.add(new JLabel("                                  "));
+			panel.add(etats);
+			panel.add(new JLabel("                                  "));
+
+			for(int i =0 ;i<images.size();i++){
+				Image img = images.get(i).getImage();
+				BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+				Graphics g = bi.createGraphics();
+				g.drawImage(img, 0, 0, 25, 25, null);
+				ImageIcon newIcon = new ImageIcon(bi);
+				panel.add(new JLabel(newIcon));
+				panel.add(Box.createRigidArea(new Dimension(1,0)));
+				panel.add(new JLabel(""+i));
+
+				panel.add(Box.createRigidArea(new Dimension(1,0))); 
 
 
 			}
-
-			panel.add(new JLabel("                 "));
+			panel.add(new JLabel("             "));
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 			JLabel resultat = new JLabel("Resultats de la Simuation :") ;
 			resultat.setFont(new Font("Tahoma", 1, 14));
-			
+
 			panel.add(resultat);
 
 			String [] result=new String[lecture.resultat.split("\n").length];
 			result = lecture.resultat.split("\n");
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 
 			for(int i =1 ; i<result.length;i++){
 
@@ -485,16 +517,24 @@ public class Fenetre extends JFrame {
 
 			Legende.repaint();
 			this.validate();
+<<<<<<< HEAD
 			Legende.add(panel);
 			
+=======
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 
-			
+			Legende.add(panel);
+
 			this.setLayout(new BorderLayout());
 			this.getContentPane().add(Scène, BorderLayout.CENTER);
 			this.getContentPane().add(Legende,BorderLayout.EAST);
 
 			panel.setBounds(5,5, Legende.getWidth(), h);
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> branch 'master' of https://github.com/shoutaro15/TER.git
 			this.Scène.add(neutre,BorderLayout.CENTER);
 			this.Scène.validate();
 
@@ -507,8 +547,8 @@ public class Fenetre extends JFrame {
 			TempsRecule.plateau = plateau;
 
 			SwingUtilities.updateComponentTreeUI(this);
-			
-			
+
+
 
 
 

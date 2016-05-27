@@ -16,8 +16,8 @@ abstract class Grille extends JPanel{
 	protected  int ligne = 30;
 	protected  int colonne = 30;
 	protected  String chemin = "src/main/java/";
-	
-	
+
+
 	/*Fonction qui permet d'éxécuter une transition sur le plateau a un instant T
 	 * 
 	 */
@@ -26,14 +26,14 @@ abstract class Grille extends JPanel{
 		for(int i = 0 ; i<t.listeCellule.size() ; i++){
 
 			donne.plateau[t.listeCellule.get(i).y][t.listeCellule.get(i).x] = t.listeCellule.get(i);
-			
+
 		}
 
 	}
-			
-			
-	
-	
-	
+
+
+
+
+
 
 }
