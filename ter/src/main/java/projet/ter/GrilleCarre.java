@@ -17,77 +17,69 @@ import projet.ter.lecture.Plateau;
 
 public class GrilleCarre extends Grille {
 	final static int coter = 40;
-	
-	
+
+
 	public GrilleCarre(Plateau plateau){
 		ligne = plateau.tailleY;
 		colonne = plateau.tailleX;
 		donne = plateau; 
 		plateaux = new Shape[ligne][colonne];
 	}
-	
 
-/* Cette fonction permet de actualiser les composants d'un plateau carre
- * 
- */
+
+	/* Cette fonction permet de actualiser les composants d'un plateau carre
+	 * 
+	 */
 	public void paintComponent(Graphics g){  
-		
+
 		Graphics2D g2d = (Graphics2D) g;
 		System.out.println("Ligne : "+ligne+"Colonnee :"+colonne);
 
 		for(int l=0;l<ligne;l++){
 			for(int c=0;c<colonne;c++){
-					Rectangle rect = new Rectangle(c*coter,l*coter,coter,coter);
-					plateaux[l][c] =  rect;
-					Color base = g.getColor();
-					ArrayList<Integer> etat = donne.plateau[l][c].etat;
-					ArrayList<File> fichier = new ArrayList<File>();
-					ArrayList<BufferedImage> image = new ArrayList<BufferedImage>();
-					AlphaComposite alpha = (AlphaComposite) g2d.getComposite();
-					
-					/*
-					 * On charge les images puis on les dessinent sur le plateau avec une transparence
-					 */
-					for(int i = 0 ; i<etat.size();i++){
-						float opa = (10-(i*3));	
-						fichier.add(new File(chemin+donne.senario+"/icone/"+etat.get(i)+".png"));
-						 g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opa* 0.1f));
-							try {
-							
-								image.add(ImageIO.read(fichier.get(i)));
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						
-						
+				Rectangle rect = new Rectangle(c*coter,l*coter,coter,coter);
+				plateaux[l][c] =  rect;
+				Color base = g.getColor();
+				ArrayList<Integer> etat = donne.plateau[l][c].etat;
+				ArrayList<File> fichier = new ArrayList<File>();
+				ArrayList<BufferedImage> image = new ArrayList<BufferedImage>();
+				AlphaComposite alpha = (AlphaComposite) g2d.getComposite();
 
-								
-							//image.get(i).setRGB(20, 150, 50);
+				/*
+				 * On charge les images puis on les dessinent sur le plateau avec une transparence
+				 */
+				for(int i = 0 ; i<etat.size();i++){
+					float opa = (10-(i*3));	
+					fichier.add(new File(chemin+donne.senario+"/icone/"+etat.get(i)+".png"));
+					g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opa* 0.1f));
+					try {
 
-						
-						g.drawImage(image.get(i), rect.x, rect.y, rect.height, rect.width, null);
-			
-						
-						
-						}
-						
-						 g2d.setComposite(alpha);
-							//g.fillRect(c*coter,l*coter,  coter, coter);	
+						image.add(ImageIO.read(fichier.get(i)));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
-							g.drawRect(c*coter,l*coter,  coter, coter);	
+					g.drawImage(image.get(i), rect.x, rect.y, rect.height, rect.width, null);
 
-					
+
+
+				}
+
+				g2d.setComposite(alpha);
+				g.drawRect(c*coter,l*coter,  coter, coter);	
+
+
 			}
 		}
-		
-}
-	
-	
-	
 
-	
+	}
+
+
+
+
+
 }
-	
-	
+
+
 
 

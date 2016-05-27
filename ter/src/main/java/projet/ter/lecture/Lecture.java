@@ -22,7 +22,6 @@ public class Lecture {
 			return false;
 		}
 	}
-	
 
 
 	/*fonction qui parcours le fichier text(senario) ligne par ligne et qui creer un plateau selon le senario*/ 
@@ -98,7 +97,7 @@ public class Lecture {
 
 						for(int i = 0; i<ligne.length(); i++){
 							if(ligne.charAt(i) == ';'){
-								
+
 								etat = new ArrayList<Integer>();
 								for(int j = 0; j<tempString.length(); j++){
 
